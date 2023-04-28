@@ -1,0 +1,690 @@
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>WRITING 
+INPUT</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="3792e415-d048-43a6-a4f4-ff3bf671c33b" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/pencil_gray.svg"/></div><h1 class="page-title">WRITING 
+INPUT</h1></header><div class="page-body"><p id="cdc5a16c-7bab-4997-9115-0f8396c5dcbe" class="">
+</p><hr id="7b1df8d6-1fa1-49e1-a561-2180f76d5632"/><div id="64fd437e-f17c-4db6-87f0-dad9ce4eae99" class="column-list"><div id="e6cf1e69-ae42-4302-a018-614e7f19f9ae" style="width:50%" class="column"><h2 id="c8cd4068-499c-4d88-a915-b87f5180ae37" class="block-color-yellow_background"><mark class="highlight-yellow_background"><strong>TEST 5 - T1</strong></mark></h2><p id="c271fbae-ffbb-4f9b-bd8d-3baab8df92eb" class="">The given plans display how the ground floor of a recreation centre currently looks and how <mark class="highlight-yellow_background">it will look</mark> once it is reorganised.</p><p id="73e98941-2803-4411-9fe3-761ca201ea3c" class="">Overall, the ground floor of the recreation centre<mark class="highlight-yellow_background"> will have</mark> more space after it is refurbished, since the car <mark class="highlight-yellow_background">park will be turned</mark> into a bowling alley. Also, the reception and t<mark class="highlight-yellow_background">he office will be removed </mark>to accommodate a wide seating area. Conversely, the main entrance<mark class="highlight-yellow_background"> will remain in the same place.</mark></p><p id="23d264bf-81ca-44d7-b229-86750fa6f05f" class="">Similarly, other areas such as the swimming pool and the squash courts <mark class="highlight-yellow_background">will be maintained</mark> in their current locations, as well as the changing rooms and the gym.</p><p id="62a2f7e2-3b44-42cf-b671-56c1dbb93269" class="">On the contrary, in the reorganised ground floor, <mark class="highlight-purple_background">t</mark><mark class="highlight-purple_background"><span style="border-bottom:0.05em solid">he reception will be placed right after the main entrance, where an unused room is now located.</span></mark><mark class="highlight-purple_background"> </mark><mark class="highlight-red_background"><span style="border-bottom:0.05em solid"><strong> Moreover</strong></span></mark>, the storage room <mark class="highlight-yellow_background">will be transformed</mark> into a café and shop. <mark class="highlight-red_background"><strong>Furthermore,</strong></mark> the new car park <mark class="highlight-yellow_background">will be divided</mark> into two areas: one for the staff and the other for customers.
+</p><p id="aa4017ea-c098-4607-a75d-609d84d1f682" class="">Task achievement: 7
+Coherence and cohesion: 7
+Lexical resource: 7
+Grammatical range and accuracy: 7
+OVERALL: 7</p><p id="ed02f399-4738-451c-a64a-af0a2128d32a" class="">
+</p></div><div id="7b279c60-8b43-4b1d-a249-3554ec031773" style="width:50%" class="column"><h2 id="d1098bdb-92de-413d-8dc8-2220188cd138" class="block-color-yellow_background">PROPOSED</h2><p id="70484375-0b99-402e-8d27-5d4e8b4abbec" class="">The given plans displays <strong>the current</strong> layout of the ground floor of a recreation centre and the reorganised layout <strong>after</strong> refurbishment.</p><p id="88f53149-e279-4e59-830c-9285c330092c" class="">Overall, the ground floor of the recreation centre<span style="border-bottom:0.05em solid"> </span><span style="border-bottom:0.05em solid"><mark class="highlight-teal_background">is expected to</mark></span> have more space after the refurbishment, given that the <mark class="highlight-teal_background"><span style="border-bottom:0.05em solid">car park is planned to be</span></mark> converted into a bowling alley. Additionally, the removal of the reception <mark class="highlight-yellow_background"><span style="border-bottom:0.05em solid">and office will make room</span></mark> for a wider seating area. However, it should be noted that the <mark class="highlight-teal_background"><span style="border-bottom:0.05em solid">main entrance is set to stay</span></mark> in the same location.</p><p id="0ebb0bd0-a2db-4092-bc42-88650216f274" class="">Similarly, other areas such as the swimming pool and the squash courts <mark class="highlight-yellow_background">will be maintained</mark> in their current locations, as well as the changing rooms and the gym.</p><p id="8d78cbab-1ef8-454c-9aa5-df105baf2133" class="">On the other hand, the reorganised ground floor <span style="border-bottom:0.05em solid"><mark class="highlight-teal_background">will feature the reception situated immediately after the main entrance</mark></span>, utilizing the currently unused room. Moreover, the storage room will be transformed into a café and shop, while the new car park <mark class="highlight-teal_background">is set to be split into</mark> two areas: one for the staff and one for customers.
+</p><p id="de3901d5-7b22-4266-a775-de69ff3fd669" class="">Task achievement: 8
+Coherence and cohesion: 8
+Lexical resource: 8
+Grammatical range and accuracy: 8
+OVERALL: 8</p><p id="09c2ff6a-8f76-41c4-8174-627aaeea0c1c" class="">
+</p></div></div><hr id="af1f327c-0657-4d35-b806-686bf1b027df"/><div id="db2afdaf-8a15-49ac-a62d-153d9e6cacb0" class="column-list"><div id="e1896032-d7ed-498b-9391-5fd84c6a3bba" style="width:50%" class="column"><h2 id="293d9122-04f1-4e9d-a2cc-b3aab10009d1" class="block-color-yellow_background">TEST 5 - T2</h2><p id="fa04a729-e946-4d22-8811-422f56da3d08" class="">It has been suggested that the only positive aspect about<mark class="highlight-orange_background"><span style="border-bottom:0.05em solid"><strong> working</strong></span></mark> is the money we receive. Yet, others believe that <mark class="highlight-orange_background"><span style="border-bottom:0.05em solid"><strong>working</strong></span></mark> has additional benefits too. In this essay, I will elaborate on the other benefits provided by <mark class="highlight-orange_background"><span style="border-bottom:0.05em solid"><strong>working.</strong></span></mark> </p><p id="18e72cad-c369-4884-8591-cfef823cdc7c" class="">Nobody can deny that making money is the main reason for getting a job. Nonetheless, the salary is not the only feature that individuals pay attention to when they are looking fo<mark class="highlight-orange_background">r</mark><mark class="highlight-orange_background"><strong><span style="border-bottom:0.05em solid"> work.</span></strong></mark> In some cases, people accept lower pays at companies where they feel encouraged to develop professionally. Currently, employees do not only wish to bring their abilities to a new position, but also be taught new skills that may result useful in the future. Furthermore, employees also seek for workplaces where they can secure a<mark class="highlight-orange_background"><span style="border-bottom:0.05em solid"><strong> life-work </strong></span></mark>balance regardless of the remuneration.</p><p id="8d3a5624-93cf-4eb0-8f97-eca687ea3e5b" class="">In line with the above, the importance of a healthy <mark class="highlight-orange_background"><span style="border-bottom:0.05em solid"><strong>work environmen</strong></span></mark>t has been put in the spotlight in recent years, since many employees denounced being on the brink of a burnout. For instance, an increasing number of people were reported as falling into anxiety and depression in the US and Great Britain due to unhealthy <mark class="highlight-orange_background"><strong><span style="border-bottom:0.05em solid">work load</span></strong></mark>. In response to this, some governments have been implementing policies to reduce<mark class="highlight-orange_background"><span style="border-bottom:0.05em solid"><strong> work hours pe</strong></span></mark>r week in order that their citizens enjoy longer weekends. These initiatives have resulted in employees being more efficient at office hours, while having more time to spend with their families.</p><p id="f1414837-975d-49ef-83d1-f7df51802f62" class="">In conclusion, people do not <strong><span style="border-bottom:0.05em solid"><mark class="highlight-blue_background">only work</mark></span></strong><span style="border-bottom:0.05em solid"><mark class="highlight-blue_background"> </mark></span>for money, but also for professional development. More importantly, workers are currently trying to find a balance between <mark class="highlight-orange_background"><span style="border-bottom:0.05em solid"><strong>work</strong></span></mark><mark class="highlight-orange_background"><span style="border-bottom:0.05em solid"> </span></mark>and leisure, which has urged governments to adopt measures in line with this tendency.</p><p id="f833b851-946a-4239-84ea-869ed8f47c79" class="">Task achievement: 8
+Coherence and cohesion: 7
+Lexical resource: 7
+Grammatical range and accuracy: 8
+OVERALL: 7.5</p></div><div id="726f8785-7466-4817-b6a9-0ac41ce0410c" style="width:50%" class="column"><h2 id="316d595f-5416-4b92-9016-f4741a0f6c46" class="block-color-yellow_background">PROPOSED</h2><p id="1e1632b2-1736-4f9c-a211-166df1f5814d" class="">It has been suggested that the only positive aspect about<span style="border-bottom:0.05em solid"><mark class="highlight-teal_background"><strong> being employed</strong></mark></span> is the salary we receive. Yet, others believe that<mark class="highlight-teal_background"><span style="border-bottom:0.05em solid"><strong> having a job</strong></span></mark> has additional advantages as well. In this essay, I will elaborate on the other benefits provided<mark class="highlight-teal_background"><span style="border-bottom:0.05em solid"><strong> by employment.</strong></span></mark></p><p id="a8c3cffa-626c-4efa-aaaf-116a2e3294de" class="">Nobody can deny that making money is the main reason for getting a job. Nonetheless, the salary is not the only feature that individuals pay attention to when they are looking fo<mark class="highlight-orange_background">r</mark><mark class="highlight-orange_background"><strong><span style="border-bottom:0.05em solid"> work.</span></strong></mark> In some cases, people accept lower pays at companies where they feel encouraged to develop professionally. Currently, employees do not only wish to bring their abilities to a new position, but also be taught new skills that may result useful in the future. Furthermore, employees also seek for workplaces where they can secure a<mark class="highlight-orange_background"><span style="border-bottom:0.05em solid"><strong> life-work </strong></span></mark>balance regardless of the remuneration.</p><p id="4b9240ec-415c-4344-a0f4-6f981afa308c" class="">In line with the above, the importance of a healthy <mark class="highlight-orange_background"><span style="border-bottom:0.05em solid"><strong>work environmen</strong></span></mark>t has been put in the spotlight in recent years, since many employees denounced being on the brink of a burnout. For instance, an increasing number of people were reported as falling into anxiety and depression in the US and Great Britain due to unhealthy <mark class="highlight-teal_background"><strong><span style="border-bottom:0.05em solid">workload</span></strong></mark><mark class="highlight-teal_background">.</mark> In response to this, some governments have been implementing policies to reduce<mark class="highlight-orange_background"><span style="border-bottom:0.05em solid"><strong> </strong></span></mark><mark class="highlight-teal_background"><span style="border-bottom:0.05em solid"><strong>working hours pe</strong></span></mark><mark class="highlight-teal_background">r</mark> week in order that their citizens enjoy longer weekends. These initiatives have resulted in employees being more efficient at office hours, while having more time to spend with their families.</p><p id="5b399019-e09d-43ec-b119-ca8682670f38" class="">In conclusion, people do not <span style="border-bottom:0.05em solid"><mark class="highlight-teal_background"><strong>solely engage in employment</strong></mark></span><mark class="highlight-teal_background"><strong>,</strong></mark> but also for professional development. More importantly, workers are currently trying to find a balance between <mark class="highlight-teal_background"><span style="border-bottom:0.05em solid"><strong>occupational and personal lives,</strong></span></mark> which has urged governments to adopt measures in line with this tendency.</p><p id="1a721e4d-a2dc-41cd-9287-15a6c3780503" class="">Task achievement: 9</p><p id="85b3d4c3-3093-4861-a679-01e5aad2aaac" class="">Coherence, 8</p><p id="005bb112-356f-42c0-b3e4-c4a86bbed455" class="">Lexical resource: 8</p><p id="2ed4c634-ff0b-4add-bd0d-1a8d7a5e79df" class="">Grammar: 8</p><p id="37d9380e-86e6-4cef-853c-3e68836652a8" class="">Overall: 8.5</p></div></div><p id="7505af0f-dee3-460c-92cb-ee2906b1e5da" class="">
+</p></div></article></body></html>
